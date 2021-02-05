@@ -1,6 +1,6 @@
  version=0.1
  [default.deploy.parameters]
- stack_name = "my-app-stack"
+ stack_name = "ts-graphql-hw-with-sam"
  s3_bucket = "my-source-bucket"
  s3_prefix = "my-s3-prefix"
  region = "ap-southeast-2"
