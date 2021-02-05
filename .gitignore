@@ -8,3 +8,6 @@
 npm-debug.log
 Thumbs.db
 /config
+
+# Folder created by tsc command
+/.build

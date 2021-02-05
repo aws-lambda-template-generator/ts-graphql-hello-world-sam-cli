@@ -3,18 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "build-tsc": "tsc",
+    "build-webpack": "webpack",
     "lint": "./node_modules/.bin/eslint ./",
     "lint-fixup": "./node_modules/.bin/eslint ./ --ext .js,.jsx --fix",
     "generate": "graphql-codegen --config codegen.yml",
     "deploy": "sls deploy --stage test",
     "dev": "sls offline start -r ap-southeast-1 --stage test"
+    
   },
   "repository": "",
   "author": "Mdh",
   "license": "MIT",
   "dependencies": {
     "apollo-server-lambda": "^2.16.1",
-    "graphql": "^15.3.0"
+    "bufferutil": "^4.0.3",
+    "graphql": "^15.3.0",
+    "utf-8-validate": "^5.0.4"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.19.0",
@@ -23,6 +28,7 @@
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
     "webpack": "^4.44.1",
+    "webpack-cli": "^4.5.0",
     "webpack-node-externals": "^2.5.0"
   }
 }

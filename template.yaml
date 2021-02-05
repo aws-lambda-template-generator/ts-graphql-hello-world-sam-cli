@@ -1,9 +1,10 @@
+# For further info on SAM template, go to: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy.html
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  sam-lambda-test
+  ts-graphql-hello-world-with-sam
 
-  Sample SAM Template for sam-lambda-test
+  Sample SAM Template for ts-graphql-hello-world
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
@@ -11,29 +12,29 @@ Globals:
     Timeout: 3
 
 Resources:
-  HelloWorldFunction:
+  HelloWorldGqFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: hello-world/
-      Handler: app.lambdaHandler
+      Handler: src/handler.grapqhHandler # name of the handler function in src/handler.js
       Runtime: nodejs14.x
       Events:
-        HelloWorld:
+        HelloWorldGq:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /hello
+            Path: /hello-world
             Method: get
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  HelloWorldApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+  HelloWorldGqApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World GraphQL function"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
-    Description: "Hello World Lambda Function ARN"
+  HelloWorldGqFunction:
+    Description: "Hello World GraphQL Lambda Function ARN"
     Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
+  HelloWorldGqFunctionIamRole:
+    Description: "Implicit IAM Role created for Hello World GraphQL function"
     Value: !GetAtt HelloWorldFunctionRole.Arn
