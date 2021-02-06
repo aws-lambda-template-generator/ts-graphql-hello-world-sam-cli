@@ -23,7 +23,7 @@ sam local invoke
 sam local start-api
 
 # Test with curl
-curl -X POST http://localhost:3000/test/graphql/hello --data '{"query": "{hello}"}'
+curl -X POST http://127.0.0.1:3000/graphql --data '{"query": "{hello}"}'
 ```
 
 Playground is available.

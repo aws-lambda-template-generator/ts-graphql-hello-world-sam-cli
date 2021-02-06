@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build-tsc": "tsc",
-    "build-webpack": "webpack",
+    "build": "tsc",
+    "watch:build": "tsc --watch",
+    "webpack-build": "webpack",
     "lint": "./node_modules/.bin/eslint ./",
     "lint-fixup": "./node_modules/.bin/eslint ./ --ext .js,.jsx --fix",
     "generate": "graphql-codegen --config codegen.yml",
     "deploy": "sls deploy --stage test",
-    "dev": "sls offline start -r ap-southeast-1 --stage test"
+    "dev": "yarn webpack-build && sam local start-api"
     
   },
   "repository": "",

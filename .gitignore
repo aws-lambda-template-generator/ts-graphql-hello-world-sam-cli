@@ -11,3 +11,4 @@ Thumbs.db
 
 # Folder created by tsc command
 /.build
+/dist
