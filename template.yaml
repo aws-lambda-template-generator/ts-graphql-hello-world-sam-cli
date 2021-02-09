@@ -16,7 +16,7 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       Handler: ./dist/index.grapqlHandler # name of the handler function in src/handler.js
-      Runtime: nodejs14.x
+      Runtime: nodejs12.x
       Events:
         HelloWorldGq:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -28,6 +28,11 @@ Resources:
           Properties:
             Path: /graphql
             Method: post
+      Policies: # Creates IAM Role
+        # We can choose from a list of policy templates which are specific to SAM
+        # See: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
+        - SSMParameterReadPolicy:
+            ParameterName: mock-parameter # For this policy, ParameterName is required
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -35,10 +40,10 @@ Outputs:
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   HelloWorldGqApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World GraphQL function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/graphql"
   HelloWorldGqFunction:
     Description: "Hello World GraphQL Lambda Function ARN"
     Value: !GetAtt HelloWorldFunction.Arn
   HelloWorldGqFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World GraphQL function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+    Value: !GetAtt HelloWorldGqFunctionRole.Arn

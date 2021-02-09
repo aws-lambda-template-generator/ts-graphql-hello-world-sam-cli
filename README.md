@@ -14,10 +14,11 @@ sam build
 2. Testing lambda locally
 
 ```bash
+# We first build and copy dist files into .aws-sam
+yarn pre-deploy
+
 # With an example event data - this works
 sam local invoke
-
-# Or we can be a bit more specific
 
 # Startup API Gateway and Lambda in a container
 sam local start-api
@@ -32,6 +33,12 @@ Go to `http://localhost:3000/test/graphql`. You may need to change the actual qu
 
 3. Deploy the function
 
+We first need to build the template, compile TypeScript and copy the dist folder, then deploy. We can override any default config in samconfig.toml file.
+
+```bash
+yarn pre-deploy
+sam deploy --s3-bucket test.lambdafunction.bucket --s3-prefix simpleapiproxy
+```
 
 4. Clean up the function
 

@@ -10,8 +10,10 @@
     "lint-fixup": "./node_modules/.bin/eslint ./ --ext .js,.jsx --fix",
     "generate": "graphql-codegen --config codegen.yml",
     "deploy": "sls deploy --stage test",
-    "dev": "yarn webpack-build && sam local start-api"
-    
+    "dev": "yarn webpack-build && sam local start-api",
+    "pre-deploy": "yarn webpack-build && sam build && cp -R ./dist ./.aws-sam/build && cp -R ./dist ./.aws-sam/build/HelloWorldGqFunction",
+    "deploy-example": "sam deploy --s3-bucket test.lambdafunction.bucket --s3-prefix simpleapiproxy",
+    "remove": "aws cloudformation delete-stack --stack-name ts-graphql-hw-with-sam"
   },
   "repository": "",
   "author": "Mdh",
