@@ -1,6 +1,5 @@
 # TypeScript Lambda GraphQL Hello World Example with SAM Cli
 
-
 ## Get started
 
 Make sure that SAM CLI is installed.

@@ -6,44 +6,69 @@ Description: >
 
   Sample SAM Template for ts-graphql-hello-world
 
+# We can add parameters
+Parameters:
+  ApiStageName:
+    Type: String
+    Default: test
+
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     Timeout: 120
+  Api:
+    Cors:
+      AllowMethods: "'GET,POST'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      AllowOrigin: "'*'"
 
 Resources:
   HelloWorldGqFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      Handler: ./dist/index.grapqlHandler # name of the handler function in src/handler.js
+      CodeUri: ./ # This has to be either the local folder where we have package.json or S3 bucket
+      Handler: ./dist/index.graphqlHandler # name of the handler function in src/handler.js
       Runtime: nodejs12.x
+      Description: Example Lambda Function with GraphQL Deployed by SAM CLI
+      FunctionName: ts-graphql-hello-world-with-sam
+      MemorySize: 1024
+      Timeout: 15
       Events:
         HelloWorldGq:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /graphql
             Method: get
+            RestApiId: !Ref ApiDeployment # This defines the stage name.
         HelloWorldGqPost:
           Type: Api
           Properties:
-            Path: /graphql
+            Path: /graphql/hello
             Method: post
+            RestApiId: !Ref ApiDeployment # This defines the stage name.
       Policies: # Creates IAM Role
         # We can choose from a list of policy templates which are specific to SAM
         # See: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
         - SSMParameterReadPolicy:
             ParameterName: mock-parameter # For this policy, ParameterName is required
+  ApiDeployment:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref ApiStageName # This is where we can set stage name
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   HelloWorldGqApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World GraphQL function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/graphql"
+    Description: "API Gateway endpoint URL for function"
+    # To add stage, ServerlessRestApi needs to be changed to the name of the resources define AWS::Serverless:Api. 
+    # Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/test/get-users" # This is the default
+    # We can refer any top level parameter with ${NameOfParameter}.
+    Value: !Sub "https://${ApiDeployment}.execute-api.${AWS::Region}.amazonaws.com/${ApiStageName}/graphql/hello"
   HelloWorldGqFunction:
     Description: "Hello World GraphQL Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
+    Value: !GetAtt HelloWorldGqFunction.Arn
   HelloWorldGqFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World GraphQL function"
     Value: !GetAtt HelloWorldGqFunctionRole.Arn
