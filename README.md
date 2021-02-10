@@ -28,7 +28,9 @@ curl -X POST http://127.0.0.1:3000/graphql --data '{"query": "{hello}"}'
 
 Playground is available.
 
-Go to `http://localhost:3000/test/graphql`. You may need to change the actual query url within the query tab to `http://localhost:3000/test/graphql/profile`
+Go to `http://localhost:3000/test/graphql`. You may need to change the actual query url within the query tab to `http://localhost:3000/test/graphql/profile`.
+
+For troubleshooting for Apollo Server, we have local appllo server which can be run by `yarn local-graphql`.
 
 3. Deploy the function
 
