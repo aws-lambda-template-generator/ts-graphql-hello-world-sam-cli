@@ -25,6 +25,8 @@ Globals:
 Resources:
   HelloWorldGqFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Metadata:
+      BuildMethod: makefile
     Properties:
       # CodeUri: ./ # This has to be either the local folder where we have package.json or S3 bucket
       Handler: ./dist/main.graphqlHandler # name of the handler function in src/handler.js
