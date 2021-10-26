@@ -28,9 +28,9 @@ Resources:
     # Metadata: # In case, we want to use makefile for a build. Not using it for this template
     #   BuildMethod: makefile
     Properties:
-      # CodeUri: ./ # This has to be either the local folder where we have package.json or S3 bucket
-      Handler: ./dist/main.graphqlHandler # name of the handler function in src/handler.js
-      Runtime: nodejs12.x
+      CodeUri: ./dist # This has to be either the local folder where we have package.json or S3 bucket
+      Handler: main.graphqlHandler # name of the handler function in the dist folder
+      Runtime: nodejs14.x
       Description: Example Lambda Function with GraphQL Deployed by SAM CLI
       FunctionName: ts-graphql-hello-world-with-sam
       MemorySize: 1024

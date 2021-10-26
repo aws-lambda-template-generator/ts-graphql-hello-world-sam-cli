@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   entry: './src/handler.ts',
   target: 'node',
+  mode: 'production',
   module: {
     rules: [
       {
@@ -14,11 +15,17 @@ module.exports = {
   },
   resolve: {
     extensions: [ '.ts', '.js' ],
+    alias: {
+      graphql$: path.resolve(__dirname, './node_modules/graphql/index.js'),
+    }
   },
+  externals: [{
+    'aws-sdk': 'aws-sdk',
+  }],
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-    libraryTarget: 'umd',
+    libraryTarget: 'commonjs2',
   },
   optimization: {
     minimize: false,

@@ -26,6 +26,15 @@ sam local start-api
 curl -X POST http://127.0.0.1:3000/graphql --data '{"query": "{hello}"}'
 ```
 
+3. Local Development
+
+This will enable the change in the local API endpoint as we develop.
+
+```bash
+yarn webpack --watch
+sam local start-api
+```
+
 Playground is available.
 
 Go to `http://localhost:3000/test/graphql`. You may need to change the actual query url within the query tab to `http://localhost:3000/test/graphql/profile`.
