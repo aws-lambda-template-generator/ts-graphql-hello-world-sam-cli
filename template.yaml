@@ -29,8 +29,8 @@ Resources:
     #   BuildMethod: makefile
     Properties:
       CodeUri: ./dist # This has to be either the local folder where we have package.json or S3 bucket
-      Handler: main.graphqlHandler # name of the handler function in the dist folder
-      Runtime: nodejs14.x
+      Handler: index.graphqlHandler # name of the handler function in the dist folder
+      Runtime: nodejs12.x
       Description: Example Lambda Function with GraphQL Deployed by SAM CLI
       FunctionName: ts-graphql-hello-world-with-sam
       MemorySize: 1024

@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: './src/handler.ts',
   target: 'node',
-  mode: 'production',
+  mode: 'development', // Todo: update this mode. If it's production the playground is turned off and will have get request error.
   module: {
     rules: [
       {
@@ -23,7 +23,7 @@ module.exports = {
     'aws-sdk': 'aws-sdk',
   }],
   output: {
-    filename: 'main.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
     libraryTarget: 'commonjs2',
   },
