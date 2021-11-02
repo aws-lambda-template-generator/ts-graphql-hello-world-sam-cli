@@ -35,6 +35,12 @@ yarn webpack --watch
 sam local start-api
 ```
 
+Alternatively, we can use `hivemind` to run above two processes in a single terminal session. The repo is set up with `Procfile` and the command below will do the job.
+
+```bash
+hivemind
+```
+
 Playground is available.
 
 Go to `http://localhost:3000/test/graphql`. You may need to change the actual query url within the query tab to `http://localhost:3000/test/graphql/profile`.

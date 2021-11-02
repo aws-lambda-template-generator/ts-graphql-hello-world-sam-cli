@@ -30,11 +30,11 @@ Resources:
     Properties:
       CodeUri: ./dist # This has to be either the local folder where we have package.json or S3 bucket
       Handler: index.graphqlHandler # name of the handler function in the dist folder
-      Runtime: nodejs12.x
+      Runtime: nodejs14.x
       Description: Example Lambda Function with GraphQL Deployed by SAM CLI
       FunctionName: ts-graphql-hello-world-with-sam
-      MemorySize: 1024
-      Timeout: 15
+      MemorySize: 256
+      Timeout: 10
       Events:
         HelloWorldGq:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
