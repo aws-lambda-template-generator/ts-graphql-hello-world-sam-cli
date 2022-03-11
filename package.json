@@ -6,8 +6,9 @@
     "build": "tsc",
     "watch:build": "tsc --watch",
     "webpack-build": "webpack",
-    "lint": "./node_modules/.bin/eslint ./",
-    "lint-fixup": "./node_modules/.bin/eslint ./ --ext .js,.jsx --fix",
+    "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}' --quiet",
+    "fix-lint": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix --quiet",
+    "type-check": "tsc --noEmit",
     "generate": "graphql-codegen --config codegen.yml",
     "dev": "yarn pre-deploy && sam local start-api",
     "dev-server": "ts-node ./local.ts",
@@ -16,10 +17,23 @@
     "remove": "aws cloudformation delete-stack --stack-name ts-graphql-hw-with-sam",
     "debug-handler": "ts-node ./src/handler.ts"
   },
-  "repository": "",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json}": "pretty-quick --staged",
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --ext js,jsx,ts,tsx --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn type-check"
+    }
+  },
+  "repository": "https://github.com/aws-lambda-template-generator/ts-graphql-hello-world-sam-cli",
   "author": "Mdh",
   "license": "MIT",
   "dependencies": {
+    "@typescript-eslint/parser": "^5.14.0",
     "apollo-server-lambda": "^2.16.1",
     "bufferutil": "^4.0.3",
     "graphql": "^15.3.0",
@@ -32,6 +46,10 @@
     "@graphql-codegen/typescript-resolvers": "^1.19.0",
     "apollo-server": "^2.20.0",
     "eslint": "^7.12.1",
+    "husky": "4.3.8",
+    "lint-staged": "12.0.2",
+    "prettier": "2.2.1",
+    "pretty-quick": "3.1.1",
     "ts-loader": "^8.0.2",
     "ts-node": "^9.1.1",
     "typescript": "^3.9.7",
