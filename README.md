@@ -45,7 +45,7 @@ Playground is available.
 
 Go to `http://localhost:3000/test/graphql`. You may need to change the actual query url within the query tab to `http://localhost:3000/test/graphql/profile`.
 
-For troubleshooting for Apollo Server, we have local appllo server which can be run by `yarn local-graphql`.
+For troubleshooting for Apollo Server, we have local Apollo server which can be run by `yarn local-graphql`.
 
 3. Deploy the function
 
@@ -59,7 +59,7 @@ sam deploy --s3-bucket test.lambdafunction.bucket --s3-prefix simpleapiproxy
 4. Clean up the function
 
 ```bash
-aws cloudformation delete-stack --stack-name ts-graphql-hellow-world-sam-cli
+aws cloudformation delete-stack --stack-name ts-graphql-hello-world-sam-cli
 ```
 
 # Sam Configuration
