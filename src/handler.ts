@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-lambda';
 import { resolvers } from './resolvers';
-import { typeDefs } from './type-defs';
+import { typeDefs } from './typeDefs';
 
 const apolloServer = new ApolloServer({ resolvers, typeDefs });
 

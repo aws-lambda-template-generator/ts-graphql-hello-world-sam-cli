@@ -1,19 +1,14 @@
 module.exports = {
+  root: true,
   env: {
-    browser: true,
-    commonjs: true,
-    es2021: true
+    node: true,
   },
-  parser: '@typescript-eslint/parser',
-  extends: 'eslint:recommended',
+  extends: ['eslint-config-mdh-typescript-backend'],
   parserOptions: {
-    ecmaVersion: 12,
-    sourceType: 'module',
+    project: './tsconfig.json',
+    // ecmaVersion: 12,
+    // sourceType: 'module',
   },
-  rules: {
-    semi: ['error', 'always'],
-    quotes: [2, 'single'],
-    indent: ['error', 2]
-  }
+  overrides: [{ files: ['**/*.ts'] }],
+  rules: {},
 };
-  

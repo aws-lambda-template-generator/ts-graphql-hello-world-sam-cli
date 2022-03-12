@@ -25,10 +25,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "yarn lint-staged",
       "pre-push": "yarn type-check"
     }
   },
+  "prettier": "eslint-config-mdh-typescript-backend/prettier",
   "repository": "https://github.com/aws-lambda-template-generator/ts-graphql-hello-world-sam-cli",
   "author": "Mdh",
   "license": "MIT",
@@ -44,11 +45,11 @@
     "@graphql-codegen/introspection": "^1.18.1",
     "@graphql-codegen/typescript": "1.17.11",
     "@graphql-codegen/typescript-resolvers": "^1.19.0",
+    "@npco/eslint-config-backend": "^1.0.3",
     "apollo-server": "^2.20.0",
-    "eslint": "^7.12.1",
+    "eslint-config-mdh-typescript-backend": "^1.0.0",
     "husky": "4.3.8",
     "lint-staged": "12.0.2",
-    "prettier": "2.2.1",
     "pretty-quick": "3.1.1",
     "ts-loader": "^8.0.2",
     "ts-node": "^9.1.1",
