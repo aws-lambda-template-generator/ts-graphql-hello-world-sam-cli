@@ -20,7 +20,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": "pretty-quick --staged",
     "*.{js,jsx,ts,tsx}": [
-      "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix"
+      "eslint --ext js,jsx,ts,tsx --fix"
     ]
   },
   "husky": {
