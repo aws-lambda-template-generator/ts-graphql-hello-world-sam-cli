@@ -1,11 +1,14 @@
 module.exports = {
+  root: true,
   env: {
     node: true,
   },
+  extends: ['eslint-config-mdh-typescript-backend'],
   parserOptions: {
     project: './tsconfig.json',
+    // ecmaVersion: 12,
+    // sourceType: 'module',
   },
-  extends: ['eslint-config-mdh-typescript-backend'],
   overrides: [{ files: ['**/*.ts'] }],
   rules: {},
 };
