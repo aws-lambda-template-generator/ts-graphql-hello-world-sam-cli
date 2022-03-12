@@ -25,7 +25,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint-staged",
+      "pre-commit": "lint-staged",
       "pre-push": "yarn type-check"
     }
   },
@@ -45,7 +45,6 @@
     "@graphql-codegen/introspection": "^1.18.1",
     "@graphql-codegen/typescript": "1.17.11",
     "@graphql-codegen/typescript-resolvers": "^1.19.0",
-    "@npco/eslint-config-backend": "^1.0.3",
     "apollo-server": "^2.20.0",
     "eslint-config-mdh-typescript-backend": "^1.0.0",
     "husky": "4.3.8",
